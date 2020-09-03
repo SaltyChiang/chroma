@@ -108,7 +108,7 @@ namespace Chroma
 
     void applySite(T& chi, const T& psi, enum PlusMinus isign, int site) const;
 
-#ifdef BUILD_QPHIX
+#ifdef defined BUILD_QPHIX || defined BUILD_QSUNWAY 
     // Access the clover tri-buffer for packing
     const PrimitiveClovTriang<REALT>* getTriBuffer() const {
       return tri;

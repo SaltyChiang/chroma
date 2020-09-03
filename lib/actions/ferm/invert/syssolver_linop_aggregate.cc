@@ -21,6 +21,11 @@
 
 
 #include "chroma_config.h"
+#ifdef BUILD_QSUNWAY
+#include "actions/ferm/invert/qsunway_solvers/syssolver_linop_wilson_qsunway_w.h"
+#include "actions/ferm/invert/qsunway_solvers/syssolver_linop_clover_qsunway_w.h"
+#endif
+
 #ifdef BUILD_QUDA
 #include "actions/ferm/invert/quda_solvers/syssolver_linop_clover_quda_w.h"
 #include "actions/ferm/invert/quda_solvers/syssolver_linop_clover_quda_multigrid_w.h"

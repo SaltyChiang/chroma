@@ -240,6 +240,15 @@ AC_ARG_WITH(qmt,
    [ qmt_enabled="no" ]
 )
 
+AC_ARG_WITH(qsunway,
+   AC_HELP_STRING(
+      [--with-qsunway=<DIR>],
+      [Use QSUNWAY Library intalled in DIR]
+   ),
+   [ qsunway_enabled="yes"
+     QSUNWAY_HOME=${with_qsunway} ],
+   [ qsunway_enabled="no" ]   
+)
 
 AC_ARG_WITH(quda,
    AC_HELP_STRING(
@@ -1239,6 +1248,26 @@ if test "X${XMLDIFF}X" = "XxmldiffX";
 then 
      AC_MSG_WARN([xmldiff not found in your PATH. make xcheck may fail])
 fi
+
+
+###############################################
+# 
+# QSUNWAY support
+#
+################################################
+if test "X${qsunway_enabled}X" = "XyesX" ;
+then
+
+   AC_MSG_NOTICE([ Using QSUNWAY Library in ${QSUNWAY_HOME} ])
+
+   AC_DEFINE([BUILD_QSUNWAY],[], [Build with the BU QSUNWAY Library])  
+   AC_SUBST(QSUNWAY_CXXFLAGS, "-I${QSUNWAY_HOME}/include" )
+   AC_SUBST(QSUNWAY_LDFLAGS,  "-L${QSUNWAY_HOME}/lib" )
+   AC_SUBST(QSUNWAY_LIBS,     "-lqsunway" )
+fi
+
+AM_CONDITIONAL(BUILD_QSUNWAY,
+	[test "x${qsunway_enabled}x" = "xyesx" ])
 
 
 ###############################################

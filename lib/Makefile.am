@@ -1005,6 +1005,10 @@ if BUILD_GMP_REMEZ
 AM_CXXFLAGS += @GMP_CXXFLAGS@
 endif
 
+if BUILD_QSUNWAY
+AM_CXXFLAGS += @QSUNWAY_CXXFLAGS@
+endif
+
 if BUILD_QUDA
 AM_CXXFLAGS += @QUDA_CXXFLAGS@
 endif
@@ -1402,6 +1406,20 @@ libchroma_a_SOURCES = \
 if BUILD_GMP_REMEZ
 nobase_include_HEADERS += update/molecdyn/monomial/remez_gmp.h
 libchroma_a_SOURCES += update/molecdyn/monomial/remez_gmp.cc
+endif
+
+if BUILD_QSUNWAY
+nobase_include_HEADERS +=  actions/ferm/invert/qsunway_solvers/enum_qsunway_io.h \
+	actions/ferm/invert/qsunway_solvers/syssolver_qsunway_wilson_params.h \
+	actions/ferm/invert/qsunway_solvers/syssolver_linop_wilson_qsunway_w.h \
+	actions/ferm/invert/qsunway_solvers/syssolver_qsunway_clover_params.h \
+	actions/ferm/invert/qsunway_solvers/syssolver_linop_clover_qsunway_w.h
+
+libchroma_a_SOURCES    +=  actions/ferm/invert/qsunway_solvers/enum_qsunway_io.cc \
+	actions/ferm/invert/qsunway_solvers/syssolver_qsunway_wilson_params.cc \
+	actions/ferm/invert/qsunway_solvers/syssolver_linop_wilson_qsunway_w.cc \
+	actions/ferm/invert/qsunway_solvers/syssolver_qsunway_clover_params.cc \
+	actions/ferm/invert/qsunway_solvers/syssolver_linop_clover_qsunway_w.cc
 endif
 
 if BUILD_QUDA
